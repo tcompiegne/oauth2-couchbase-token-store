@@ -18,7 +18,7 @@ How to use it ?
 <bean id="tokenStore" class="com.tce.spring.oauth2.token.store.SpringDataTokenStore" />
 ```
 
-2) Bind id to the spring oauth2 token service
+2) Bind it to the spring oauth2 token service
 
 ```xml
 <bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
