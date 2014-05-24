@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:couchbase="http://www.springframework.org/schema/data/couchbase"
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/data/couchbase
+          http://www.springframework.org/schema/data/couchbase/spring-couchbase.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<couchbase:couchbase id="cb-oauth-server" bucket="default" password="" host="localhost" />
+	<couchbase:template id="cb-template-oauth-server" client-ref="cb-adeo-oauth-server" />
+	<couchbase:repositories couchbase-template-ref="cb-template-oauth-server" base-package="com.tce.spring.oauth2.repository" />
+	
+	<context:annotation-config/>
+
+</beans>
