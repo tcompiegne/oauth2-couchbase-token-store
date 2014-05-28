@@ -10,7 +10,7 @@
           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<couchbase:couchbase id="cb-oauth-server" bucket="default" password="" host="localhost" />
-	<couchbase:template id="cb-template-oauth-server" client-ref="cb-adeo-oauth-server" />
+	<couchbase:template id="cb-template-oauth-server" client-ref="cb-oauth-server" />
 	<couchbase:repositories couchbase-template-ref="cb-template-oauth-server" base-package="com.tce.spring.oauth2.repository" />
 	
 	<context:annotation-config/>
