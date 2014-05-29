@@ -28,3 +28,13 @@ How to use it ?
 </bean>
 ```
 
+3) Try it
+
+You can see a full demonstration with my other project right here :
+
+https://github.com/tcompiegne/oauth2-server-spring-couchbase
+
+Community
+===================================
+
+I hope you will enjoy my work, any feedbacks will be grateful.
