@@ -13,6 +13,12 @@
 	<couchbase:template id="cb-template-oauth-server" client-ref="cb-oauth-server" />
 	<couchbase:repositories couchbase-template-ref="cb-template-oauth-server" base-package="com.tce.spring.oauth2.repository" />
 	
+	
+	<!-- Access token services -->
+	<bean id="oAuth2AccessTokenService" class="com.tce.spring.oauth2.service.impl.OAuth2AccessTokenServiceImpl" />
+	<bean id="oAuth2RefreshTokenService" class="com.tce.spring.oauth2.service.impl.OAuth2RefreshTokenServiceImpl" />
+	<bean id="oAuth2AuthenticationToAccessTokenService" class="com.tce.spring.oauth2.service.impl.OAuth2AuthenticationToAccessTokenServiceImpl" />
+	
 	<context:annotation-config/>
 
 </beans>
