@@ -34,6 +34,21 @@ You can see a full demonstration with my other project right here :
 
 https://github.com/tcompiegne/oauth2-server-spring-couchbase
 
+Informations
+===================================
+
+Couchbase tokens are no expiry time (they remain indefinitely inside couchbase)
+
+To set an expiry time you can declare your document like this :
+
+<pre>
+@Document(expiry = 1000) 
+public class OAuth2AccesToken {
+  ...
+}
+</pre>
+
+
 Community
 ===================================
 
