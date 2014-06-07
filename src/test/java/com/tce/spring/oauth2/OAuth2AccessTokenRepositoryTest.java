@@ -105,6 +105,32 @@ public class OAuth2AccessTokenRepositoryTest {
         Assert.isNull(oauth2AccessTokenRepository.findOne(DEFAULT_TOKEN_ID));
 	}
 	
+	// Access data via Couchbase views are asynchronously
+	// Random results can happen
+	// OK : previous data are stored into the disc, view can retrieve them
+	// KO : previous data are still into the memory, view cannot retrieve them
+	@Ignore
+	@Test
+	public void testFindOAuth2AccessTokenByClientIdAndUserName() {
+		CouchbaseOAuth2AccessToken defaultToken = createSampleOAuth2AccessToken();
+		oauth2AccessTokenRepository.save(defaultToken);
+		
+		Query query = new Query();
+		query.setKey(ComplexKey.of(DEFAULT_CLIENT_ID, DEFAULT_USER_NAME));
+	    List<OAuth2AccessToken> accessTokens = oauth2AccessTokenRepository.findByClientIdAndUserName(query);
+	    
+	    Assert.notNull(accessTokens);
+	    Assert.notEmpty(accessTokens);
+	    Assert.isTrue(DEFAULT_TOKEN_ID.equals(accessTokens.get(0).getValue()));
+	    
+	    // clean data
+        oauth2AccessTokenRepository.delete(DEFAULT_TOKEN_ID);
+        Assert.isNull(oauth2AccessTokenRepository.findOne(DEFAULT_TOKEN_ID));
+	}
+	
+	
+	
+	
 	private CouchbaseOAuth2AccessToken createSampleOAuth2AccessToken() {
 		CouchbaseOAuth2AccessToken defaultToken = new CouchbaseOAuth2AccessToken(DEFAULT_TOKEN_ID);
 		defaultToken.setAuthenticationKey(DEFAULT_TOKEN_AUTHENTICATION_KEY);

@@ -246,9 +246,9 @@ public class SpringDataTokenStore implements TokenStore {
 	public Collection<OAuth2AccessToken> findTokensByClientIdAndUserName(String clientId, String userName) {
 		List<OAuth2AccessToken> accessTokens = new ArrayList<OAuth2AccessToken>();
 		Query query = new Query();
-	    query.setKey(ComplexKey.of(userName));
+	    query.setKey(ComplexKey.of(clientId, userName));
 	    
-	    accessTokens = oAuth2AccessTokenService.findByClientIdAndUserName(clientId, userName);
+	    accessTokens = oAuth2AccessTokenService.findByClientIdAndUserName(query);
 	    if (accessTokens == null) {
 	    	if (LOG.isInfoEnabled()) {
 				LOG.info("Failed to find access token for userName " + userName);

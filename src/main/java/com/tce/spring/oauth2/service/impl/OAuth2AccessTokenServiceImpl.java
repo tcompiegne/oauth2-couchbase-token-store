@@ -1,15 +1,11 @@
 package com.tce.spring.oauth2.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Service;
 
-import com.couchbase.client.protocol.views.ComplexKey;
 import com.couchbase.client.protocol.views.Query;
 import com.tce.spring.oauth2.repository.OAuth2AccessTokenRepository;
 import com.tce.spring.oauth2.service.api.OAuth2AccessTokenService;
@@ -41,25 +37,8 @@ public class OAuth2AccessTokenServiceImpl implements OAuth2AccessTokenService {
 	}
 
 	@Override
-	// TODO : rewrite this
-	public List<OAuth2AccessToken> findByClientIdAndUserName(String clientId, String userName) {
-		Query query = new Query();
-	    query.setKey(ComplexKey.of(clientId));
-		List<OAuth2AccessToken> tokensByClientId = findByClientId(query);
-		
-		query = new Query();
-	    query.setKey(ComplexKey.of(userName));
-		List<OAuth2AccessToken> tokensByUserName =  findByUserName(query);
-		
-		List<OAuth2AccessToken> tokensList = new ArrayList<OAuth2AccessToken>();
-		tokensList.addAll(tokensByClientId);
-		tokensList.addAll(tokensByUserName);
-		
-		Map<String, OAuth2AccessToken> tokens = new HashMap<String, OAuth2AccessToken>();
-		for (OAuth2AccessToken token : tokensList) {
-			tokens.put(token.getValue(), token);
-		}
-		return new ArrayList<OAuth2AccessToken>(tokens.values());
+	public List<OAuth2AccessToken> findByClientIdAndUserName(Query query) {
+		return oAuth2AccessTokenRepository.findByClientIdAndUserName(query);
 	}
 	
 	@Override

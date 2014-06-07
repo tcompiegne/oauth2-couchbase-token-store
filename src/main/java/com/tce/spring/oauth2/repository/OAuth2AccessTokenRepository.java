@@ -17,4 +17,6 @@ public interface OAuth2AccessTokenRepository extends CrudRepository<OAuth2Access
 	List<OAuth2AccessToken> findByUserName(Query query);
 	
 	List<OAuth2AccessToken> findByClientId(Query query);
+	
+	List<OAuth2AccessToken> findByClientIdAndUserName(Query query);
 }

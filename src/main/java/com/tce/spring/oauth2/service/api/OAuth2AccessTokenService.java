@@ -19,7 +19,7 @@ public interface OAuth2AccessTokenService {
 	
 	OAuth2AccessToken save(OAuth2AccessToken accessToken);
 	
-	List<OAuth2AccessToken> findByClientIdAndUserName(String clientId, String userName);
+	List<OAuth2AccessToken> findByClientIdAndUserName(Query query);
 	
 	List<OAuth2AccessToken> findByClientId(Query query);
 	
