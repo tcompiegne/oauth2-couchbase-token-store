@@ -25,6 +25,14 @@ public class CouchbaseOAuth2AccessToken extends DefaultOAuth2AccessToken {
 	private String clientId;
 	
 	private String userName;
+	
+	/**
+	 * Private constructor for JPA and other serialization tools.
+	 */
+	@SuppressWarnings("unused")
+	private CouchbaseOAuth2AccessToken() {
+		this((String) null);
+	}
 
 	public CouchbaseOAuth2AccessToken(OAuth2AccessToken accessToken) {
 		super(accessToken);

@@ -21,6 +21,14 @@ public class CouchbaseOAuth2RefreshToken extends DefaultOAuth2RefreshToken {
 	
 	private String authentication;
 	
+	/**
+	 * Default constructor for JPA and other serialization tools.
+	 */
+	@SuppressWarnings("unused")
+	private CouchbaseOAuth2RefreshToken() {
+		this(null);
+	}
+	
 	public CouchbaseOAuth2RefreshToken(String value) {
 		super(value);
 		this.refreshTokenId = value;
